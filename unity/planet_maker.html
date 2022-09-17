@@ -11,6 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		  
+		<link rel="stylesheet" href="../assets/css/codeContainer.css" type="text/css">
 	</head>
 	<body class="is-preload">
 
@@ -86,7 +88,8 @@
 									<div class="col-4"><span class="image fit"><img src="../images/planet cretor/Screenshot_8.png" alt="" /></span></div>
 								</div>
 							</div>
-                            </section>
+                         
+
 							<span class="image fit"> 
 								<header>
 									<h2> A Little Demo of the project</h2>
@@ -100,15 +103,88 @@
 
 							</span>
 
+							<header>
+                                <h2> SCRIPTS</h2>
+                                 <h3> EDITOR SCRIPTS</h3>
+								 <p> Editor Scripting can help you customize and extend the Unity editor to make it easier to use on your projects.
+									In this project I did just that by creating new C# script that extend from UnityEditor Library and that can change the inspector view inside the editor.
+								 </p>
+                            </header>
+								<!-- Article Planet editor script-->
+								<article class = "article_unit">
+									<header>
+										 <h2> Planet Editor script</h2> 
+									</header>
+									  
+										 <!-- section 1 Code -->
+										<h2>Change Inspector with OnInspectorGUI</h2>
+							 	<pre  >
+							 <code class="glow-container">
 							
+	public override void OnInspectorGUI()
+	{
+		using (var check = new EditorGUI.ChangeCheckScope())
+		{
+			base.OnInspectorGUI();
+			if (check.changed)
+			{
+				planet.GeneratePlanet();
+			}
+		}
+		if (GUILayout.Button("Generate Planet"))
+		{
+			planet.GeneratePlanet();
+		}
+		DrawSettingsEditor(planet.shapeSettings , planet.OnShapeSettingsUpdated , 
+		ref planet.shapeSettingsFoldout , ref shapeEditor);
+
+		DrawSettingsEditor(planet.colourSettings , planet.OnColourSettingsUpdated ,
+		ref  planet.colorSettingsFoldout, ref colourEditor);
+	}
+ 
+											</code>
+										</pre>
+							   <!-- section 2 Code -->
+										<h2>DRAWING SETTING EDITOR UNDER PLANET INPECTOR</h2>
+										<pre  >
+									<code class="glow-container">
+void DrawSettingsEditor(Object settings , System.Action onSettingsUpdated , ref bool foldout ,
+ref  Editor editor)
+	{
+		if (settings != null)
+		{
+			foldout = EditorGUILayout.InspectorTitlebar(foldout, settings); 
+			using (var check = new EditorGUI.ChangeCheckScope())
+			{
+				if (foldout)
+				{
+					CreateCachedEditor(settings, null, ref editor);
+					editor.OnInspectorGUI();
+					if (check.changed)
+					{
+						if (onSettingsUpdated != null)
+						{
+							onSettingsUpdated();
+						}
+					}
+				}
+			}
+		}
+	}
+												   </code>
+											   </pre>
+									 
+								</article>
+						</section>
+							
+<br/>
+
+
 
 					</div> 
 
 
-
-
-
-
+ 
 				<!-- Footer -->
 				<footer id="footer">
 					 
