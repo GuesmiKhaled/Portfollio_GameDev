@@ -5,9 +5,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MobileProjectsComponent } from './components/mobile-projects/mobile-projects.component';
 import { OtherProjectsComponent } from './components/other-projects/other-projects.component';
+import { MssProjectsComponent } from './components/mss-projects/mss-projects.component';
 
 export const routes: Routes = [
   { path: '', component: ProjectsComponent },
   { path: 'mobile', component: MobileProjectsComponent },
-  { path: 'other', component: OtherProjectsComponent }
+  { path: 'other', component: OtherProjectsComponent },
+  { path: 'mss', component: MssProjectsComponent }
 ];

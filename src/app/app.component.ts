@@ -8,7 +8,7 @@ import { IntroComponent } from './components/intro/intro.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, NavComponent,IntroComponent],  // 👈 include them
+  imports: [RouterOutlet,  FooterComponent, NavComponent,IntroComponent],  // 👈 include them
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

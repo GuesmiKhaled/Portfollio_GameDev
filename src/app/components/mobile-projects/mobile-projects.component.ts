@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from "../footer/footer.component";
 import { NavComponent } from "../nav/nav.component";
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-projects',
   templateUrl: './mobile-projects.component.html',
   styleUrls: ['./mobile-projects.component.css'],
-  imports: [FooterComponent, NavComponent]
+  imports: [ NavComponent, CommonModule, RouterModule], // ✅ include modules here
 })
 export class MobileProjectsComponent {
   mobileProjects = [
