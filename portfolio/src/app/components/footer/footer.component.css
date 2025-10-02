@@ -1,0 +1,35 @@
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  flex-wrap: wrap;
+}
+#footer .split.contact {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+#footer .split.contact section {
+  min-width: 150px;
+}
+#footer .icons.alt {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#footer .icons.alt li a {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+#footer .icons.alt li a:hover {
+  color: #0a84ff;
+}
