@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+
+declare var $: any;   // expose jQuery
+declare var breakpoints: any;
+declare var browser: any;
 @Component({
   selector: 'app-nav',
   standalone: true,
@@ -40,7 +44,25 @@ import { Router } from '@angular/router';
     </nav>
   `
 })
-export class NavComponent {
+export class NavComponent implements AfterViewInit {
+
+  ngAfterViewInit(): void {
+    // Re-run the template JS after Angular loads DOM
+    if (typeof $ !== 'undefined') {
+      (function($) {
+        var $window = $(window),
+            $body = $('body'),
+            $wrapper = $('#wrapper');
+
+        // Example: parallax init
+        $wrapper._parallax(0.925);
+
+        // If you want the whole script
+        // you can move your pasted code here OR
+        // include it in assets/js/main.js
+      })($);
+    }
+  }
 isMssProjectsActive(): any {
     return this.router.isActive('/FullStack', { paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' });
 
