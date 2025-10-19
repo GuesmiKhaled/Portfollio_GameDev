@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { NavComponent } from "../nav/nav.component";
-interface Project {
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-  link: string;
-}
+import { Project } from '../../domain/entities/Project';
 @Component({
   selector: 'app-other-projects',
   imports: [CommonModule, HeaderComponent, NavComponent],
@@ -18,9 +12,26 @@ interface Project {
 export class OtherProjectsComponent implements OnInit {
   projects: Project[] = [
     {
+      id: 1,
       title: 'Dynamic dungeon generator',
       subtitle: '2D RogueLike Game / Tool made with Unity Engine',
       description: 'Individual project generating several maps dynamically.',
+      image: './images/dungeon_generator/dungeon_generator.png',
+      link: 'unity/dungeon_generator.html'
+    },
+    {
+      id: 2,
+      title: 'Last Stand 2D',
+      subtitle: '2D Platformer Game with Unity Engine',
+      description: 'This is a platformer game where the player is a soldier fighting for his planet who got invaded by space pirates.<br/>This game is more like a project to test out many features, to know more about the project can be found on this github ',
+      image: './images/dungeon_generator/dungeon_generator.png',
+      link: 'unity/dungeon_generator.html'
+    },
+    {
+      id: 3,
+      title: 'Last Stand 2D',
+      subtitle: '2D Platformer Game with Unity Engine',
+      description: 'This is a platformer game where the player is a soldier fighting for his planet who got invaded by space pirates.<br/>This game is more like a project to test out many features, to know more about the project can be found on this github ',
       image: './images/dungeon_generator/dungeon_generator.png',
       link: 'unity/dungeon_generator.html'
     }

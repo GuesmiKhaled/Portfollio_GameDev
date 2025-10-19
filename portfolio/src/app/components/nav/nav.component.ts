@@ -2,6 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { SharedService } from '../../services/shared.service';
 
 declare var $: any;   // expose jQuery
 declare var breakpoints: any;
@@ -15,18 +16,25 @@ declare var browser: any;
       <ul class="links">
 
         <li [ngClass]="{ active: isGameDevActive() }">
-          <a routerLink="/GameDev" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/GameDev"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }"
+           (click)="setHeader('Game Developer')">
             Game development projects
           </a>
         </li>
         <li [ngClass]="{ active: isMobileDevActive() }">
-          <a routerLink="/MobileDev" routerLinkActive="active">Mobile Apps projects</a>
+          <a routerLink="/MobileDev"
+          routerLinkActive="active"
+          (click)="setHeader('Mobile Apps Developer')">Mobile Apps projects</a>
         </li>
         <!-- <li>
           <a routerLink="/KhaledGuesmi/other" routerLinkActive="active">Other Projects</a>
         </li> -->
         <li [ngClass]="{ active: isMssProjectsActive() }">
-          <a routerLink="/FullStack" routerLinkActive="active">Mss Projects</a>
+          <a routerLink="/FullStack"
+           routerLinkActive="active"
+           (click)="setHeader('Full Stack Developer .Net/Angular')">Mss Projects</a>
 
         </li>
       </ul>
@@ -46,6 +54,10 @@ declare var browser: any;
 })
 export class NavComponent implements AfterViewInit {
 
+
+  setHeader(title: string) {
+    this.sharedService.setHeaderTitle(title);
+  }
   ngAfterViewInit(): void {
     // Re-run the template JS after Angular loads DOM
     if (typeof $ !== 'undefined') {
@@ -56,10 +68,6 @@ export class NavComponent implements AfterViewInit {
 
         // Example: parallax init
         $wrapper._parallax(0.925);
-
-        // If you want the whole script
-        // you can move your pasted code here OR
-        // include it in assets/js/main.js
       })($);
     }
   }
@@ -72,7 +80,7 @@ isMobileDevActive(): any {
 
 }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private sharedService: SharedService) {}
 
   isGameDevActive(): boolean {
     return this.router.isActive('/GameDev', { paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' });

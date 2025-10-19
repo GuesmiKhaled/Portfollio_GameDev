@@ -3,25 +3,17 @@ import { NavComponent } from "../nav/nav.component";
 import { FooterComponent } from "../footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
-
-interface Project {
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-  link: string;
-}
+import { Project } from '../../domain/entities/Project';
 @Component({
   selector: 'app-mss-projects',
     imports: [CommonModule, HeaderComponent, NavComponent],
   templateUrl: './mss-projects.component.html',
   styleUrl: './mss-projects.component.css'
-
-
 })
 export class MssProjectsComponent implements OnInit {
   projects: Project[] = [
     {
+      id: 1,
       title: 'MPay Mobile Payment Tunisia',
       subtitle: 'Mobile app for digital payment with wallets and bank cards',
       description: 'Individual project generating several maps dynamically.',
@@ -29,6 +21,7 @@ export class MssProjectsComponent implements OnInit {
       link: 'unity/dungeon_generator.html'
     },
     {
+      id: 2,
       title: 'Switch Mobile Payment Tunisia',
       subtitle: 'Mobile app for digital payment with wallets and bank cards',
       description: 'Individual project generating several maps dynamically.',
@@ -36,6 +29,7 @@ export class MssProjectsComponent implements OnInit {
       link: 'unity/dungeon_generator.html'
     },
     {
+       id: 3,
       title: 'Portal Mobile Payment Tunisie',
       subtitle: 'Mobile app for digital payment with wallets and bank cards in angular',
       description: 'Individual project generating several maps dynamically.',
@@ -43,6 +37,7 @@ export class MssProjectsComponent implements OnInit {
       link: 'unity/dungeon_generator.html'
     },
     {
+       id: 4,
       title: 'NumoPay -Mobile Payment Lybia-',
       subtitle: 'Mobile app for digital payment with wallets and bank cards',
       description: 'Individual project generating several maps dynamically.',
@@ -50,6 +45,7 @@ export class MssProjectsComponent implements OnInit {
       link: 'unity/dungeon_generator.html'
     },
     {
+        id: 5,
       title: 'Mobile Payment Bank of Afrika',
       subtitle: 'Mobile app for digital payment with wallets and bank cards',
       description: 'Individual project generating several maps dynamically.',
@@ -57,6 +53,7 @@ export class MssProjectsComponent implements OnInit {
       link: 'unity/dungeon_generator.html'
     },
     {
+        id: 6,
       title: 'Portal Payment Bank of Afrika',
       subtitle: 'Mobile app for digital payment with wallets and bank cards',
       description: 'Individual project generating several maps dynamically.',
@@ -64,6 +61,7 @@ export class MssProjectsComponent implements OnInit {
       link: 'unity/dungeon_generator.html'
     },
     {
+        id: 7,
       title: 'Portal Vista for Bank of Afrika',
       subtitle: 'Mobile app for digital payment with wallets and bank cards',
       description: 'Individual project generating several maps dynamically.',
@@ -71,6 +69,7 @@ export class MssProjectsComponent implements OnInit {
       link: 'unity/dungeon_generator.html'
     },
     {
+        id: 8,
       title: 'Mobile Payment FransaBank Algeria',
       subtitle: 'Mobile app for digital payment with wallets and bank cards',
       description: 'Individual project generating several maps dynamically.',
@@ -86,16 +85,18 @@ export class MssProjectsComponent implements OnInit {
   totalPages = 0;
 
   ngOnInit() {
-    this.totalPages = Math.ceil(this.projects.length / this.itemsPerPage);
-    this.updatePage();
+  const otherProjects = this.projects.filter(p => p.id !== 1);
+  this.totalPages = Math.ceil(otherProjects.length / this.itemsPerPage);
+  this.updatePage();
   }
 
-  updatePage() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.pagedProjects = this.projects.slice(start, end);
-    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  }
+updatePage() {
+  const otherProjects = this.projects.filter(p => p.id !== 1);
+  const start = (this.currentPage - 1) * this.itemsPerPage;
+  const end = start + this.itemsPerPage;
+  this.pagedProjects = otherProjects.slice(start, end);
+  this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+}
 
   goToPage(page: number) {
     this.currentPage = page;
@@ -114,5 +115,11 @@ export class MssProjectsComponent implements OnInit {
       this.currentPage++;
       this.updatePage();
     }
+  }
+   get featuredProject() {
+    return this.projects.find(p => p.id === 1);
+  }
+   get otherProjects() {
+    return this.projects.filter(p => p.id !== 1);
   }
 }

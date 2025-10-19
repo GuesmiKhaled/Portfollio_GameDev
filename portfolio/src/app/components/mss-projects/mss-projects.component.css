@@ -12,11 +12,7 @@
   margin: 0 0 2rem 2px;
   padding: 0;
 }
-.pagination a.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: default;
-}
+
 .pagination a,
 .pagination span {
   -moz-transition: background-color 0.2s ease-in-out,
@@ -124,4 +120,115 @@
 
 .pagination span {
   color: #eeeeee;
+}
+
+section.augs {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  --aug-inlay: initial;
+  --aug-inlay-all: 2px;
+  --aug-inlay-bg: url(http://augmented-ui.com/img/propjockey.png) center 70% /
+    auto 70% no-repeat;
+  --aug-inlay-opacity: 0.25;
+}
+section.augs::before {
+  filter: brightness(0.2) blur(10px);
+}
+/* Section/Article */
+
+section.special,
+article.special {
+  text-align: center;
+}
+
+header {
+  cursor: default;
+}
+
+header > .date {
+  display: block;
+  font-size: 0.8rem;
+  height: 1;
+  margin: 0 0 1rem 0;
+  position: relative;
+}
+
+header > p {
+  font-style: italic;
+}
+
+header > h1 + p {
+  font-size: 1.1rem;
+  margin-top: -0.5rem;
+  line-height: 2;
+}
+
+header > h2 + p {
+  font-size: 1rem;
+  margin-top: -0.75rem;
+}
+
+header > h3 + p {
+  font-size: 0.9rem;
+  margin-top: -0.75rem;
+}
+
+header > h4 + p {
+  font-size: 0.8rem;
+  margin-top: -0.75rem;
+}
+
+header.major {
+  margin: 0 0 4rem 0;
+  text-align: center;
+}
+
+header.major > :last-child {
+  margin-bottom: 0;
+}
+
+header.major > p {
+  margin-top: 0;
+  text-align: center;
+}
+
+header.major > .date {
+  font-size: 1rem;
+  margin: 0 0 4rem 0;
+}
+
+header.major > .date:before,
+header.major > .date:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 6rem);
+  border-top: solid 2px;
+}
+
+header.major > .date:before {
+  left: 0;
+}
+
+header.major > .date:after {
+  right: 0;
+}
+
+@media screen and (max-width: 980px) {
+  header br {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  header.major {
+    margin: 0 0 2rem 0;
+  }
+}
+
+header.major .date:before,
+header.major .date:after {
+  border-top-color: #eeeeee;
 }

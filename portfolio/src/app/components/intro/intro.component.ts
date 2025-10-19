@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, Renderer2 } from '@angular/core';
 declare var $: any;   // expose jQuery
 declare var breakpoints: any;
 declare var browser: any;
@@ -10,7 +10,16 @@ declare var browser: any;
 })
 export class IntroComponent  implements AfterViewInit {
 
+   constructor(private renderer: Renderer2) {}
   ngAfterViewInit(): void {
+      window.addEventListener('load', () => {
+      setTimeout(() => {
+          const body = document.querySelector('body');
+          if (body) {
+              this.renderer.removeClass(body, 'intro');
+          }
+      }, 100);
+    });
     // Re-run the template JS after Angular loads DOM
     if (typeof $ !== 'undefined') {
       (function($) {
