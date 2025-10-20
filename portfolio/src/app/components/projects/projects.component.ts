@@ -73,27 +73,23 @@ export class ProjectsComponent implements OnInit {
 
   currentPage = 1;
   itemsPerPage = 4;
-  pagedProjects: any[] = [];
+  pagedProjects: Project[] = [];
   pages: number[] = [];
   totalPages = 0;
 
   ngOnInit() {
-    this.totalPages = Math.ceil(this.projects.length / this.itemsPerPage);
-    this.updatePage();
-  }
-  get featuredProject() {
-    return this.projects.find(p => p.id === 1);
+  const otherProjects = this.projects.filter(p => p.id !== 1);
+  this.totalPages = Math.ceil(otherProjects.length / this.itemsPerPage);
+  this.updatePage();
   }
 
-  get otherProjects() {
-    return this.projects.filter(p => p.id !== 1);
-  }
-  updatePage() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.pagedProjects = this.projects.slice(start, end);
-    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  }
+updatePage() {
+  const otherProjects = this.projects.filter(p => p.id !== 1);
+  const start = (this.currentPage - 1) * this.itemsPerPage;
+  const end = start + this.itemsPerPage;
+  this.pagedProjects = otherProjects.slice(start, end);
+  this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+}
 
   goToPage(page: number) {
     this.currentPage = page;
@@ -112,5 +108,11 @@ export class ProjectsComponent implements OnInit {
       this.currentPage++;
       this.updatePage();
     }
+  }
+   get featuredProject() {
+    return this.projects.find(p => p.id === 1);
+  }
+   get otherProjects() {
+    return this.projects.filter(p => p.id !== 1);
   }
 }

@@ -21,18 +21,12 @@
     <a [href]="featuredProject.link" class="image main">
       <img [src]="featuredProject.image" [alt]="featuredProject.title" />
     </a>
-    <!-- <ul class="actions special">
-      <li>
-        <a [href]="featuredProject.link" class="button large disabled"
-          >View Project</a
-        >
-      </li>
-    </ul> -->
+
   </article>
 
   <!-- Other Projects Grid -->
   <section class="posts">
-    <article *ngFor="let project of otherProjects" class="article_unit">
+   <article *ngFor="let project of pagedProjects" class="article_unit"> 
       <header>
         <h2>
           <a [href]="project.link">{{ project.title }}</a>
@@ -50,11 +44,6 @@
           <a [href]="project.link" target="_blank">link</a>.
         </span>
       </p>
-      <!-- <ul class="actions special">
-        <li>
-          <a [href]="project.link" class="button disabled">View Project</a>
-        </li>
-      </ul> -->
     </article>
   </section>
 
