@@ -1,7 +1,6 @@
 <app-header></app-header>
 <app-nav></app-nav>
-<div id="main">
-  <!-- Featured Project -->
+<div id="main"> 
   <article class="post featured" *ngIf="featuredProject">
     <header class="major">
       <h2>
@@ -20,9 +19,7 @@
     <a [href]="featuredProject.link" class="image main">
       <img [src]="featuredProject.image" [alt]="featuredProject.title" />
     </a>
-  </article>
-
-  <!-- Other Projects Grid -->
+  </article> 
   <section class="posts">
     <article *ngFor="let project of pagedProjects" class="article_unit">
       <header>

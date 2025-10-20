@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { NavComponent } from "../nav/nav.component";
 import { Project } from '../../domain/entities/Project';
+import { ProjectListComponentComponent } from "../../project-list.component/project-list.component";
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, NavComponent],     // 👈 add this
+  imports: [HeaderComponent, NavComponent, ProjectListComponentComponent],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent  {
 
   projects: Project[] = [
      {
@@ -70,49 +71,5 @@ export class ProjectsComponent implements OnInit {
       link: 'https://github.com/GuesmiKhaled/Fallout_Stairs'
     }
   ];
-
-  currentPage = 1;
-  itemsPerPage = 4;
-  pagedProjects: Project[] = [];
-  pages: number[] = [];
-  totalPages = 0;
-
-  ngOnInit() {
-  const otherProjects = this.projects.filter(p => p.id !== 1);
-  this.totalPages = Math.ceil(otherProjects.length / this.itemsPerPage);
-  this.updatePage();
-  }
-
-updatePage() {
-  const otherProjects = this.projects.filter(p => p.id !== 1);
-  const start = (this.currentPage - 1) * this.itemsPerPage;
-  const end = start + this.itemsPerPage;
-  this.pagedProjects = otherProjects.slice(start, end);
-  this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-}
-
-  goToPage(page: number) {
-    this.currentPage = page;
-    this.updatePage();
-  }
-
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePage();
-    }
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.updatePage();
-    }
-  }
-   get featuredProject() {
-    return this.projects.find(p => p.id === 1);
-  }
-   get otherProjects() {
-    return this.projects.filter(p => p.id !== 1);
-  }
+ 
 }

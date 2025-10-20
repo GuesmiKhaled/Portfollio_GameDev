@@ -8,7 +8,7 @@ import { Project } from '../../domain/entities/Project';
   selector: 'app-mobile-projects',
   templateUrl: './mobile-projects.component.html',
   styleUrls: ['./mobile-projects.component.css'],
-  imports: [NavComponent, CommonModule, RouterModule, HeaderComponent], // ✅ include modules here
+  imports: [NavComponent, CommonModule, RouterModule, HeaderComponent],  
 })
 export class MobileProjectsComponent implements OnInit {
   projects: Project[] = [
@@ -38,7 +38,7 @@ export class MobileProjectsComponent implements OnInit {
       link: '#'
     }
   ];
-currentPage = 1;
+  currentPage = 1;
   itemsPerPage = 4;
   pagedProjects: any[] = [];
   pages: number[] = [];

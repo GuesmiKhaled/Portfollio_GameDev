@@ -11,46 +11,7 @@ declare var browser: any;
   selector: 'app-nav',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  template: `
-    <nav id="nav">
-      <ul class="links">
-
-        <li [ngClass]="{ active: isGameDevActive() }">
-          <a routerLink="/GameDev"
-           routerLinkActive="active"
-           [routerLinkActiveOptions]="{ exact: true }"
-           (click)="setHeader('Game Developer')">
-            Game development projects
-          </a>
-        </li>
-        <li [ngClass]="{ active: isMobileDevActive() }">
-          <a routerLink="/MobileDev"
-          routerLinkActive="active"
-          (click)="setHeader('Mobile Apps Developer')">Mobile Apps projects</a>
-        </li>
-        <!-- <li>
-          <a routerLink="/KhaledGuesmi/other" routerLinkActive="active">Other Projects</a>
-        </li> -->
-        <li [ngClass]="{ active: isMssProjectsActive() }">
-          <a routerLink="/FullStack"
-           routerLinkActive="active"
-           (click)="setHeader('Full Stack Developer .Net/Angular')">Mss Projects</a>
-
-        </li>
-      </ul>
-      <ul class="icons">
-        <li>
-          <a href="https://linkedin.com/in/khaled-guesmi/" class="icon brands fa-linkedin-in" target="_blank"></a>
-        </li>
-        <li>
-          <a href="https://thunderkill.itch.io" class="icon brands fa-itch-io" target="_blank"></a>
-        </li>
-        <li>
-          <a href="https://github.com/Thunderkilll" class="icon brands fa-github" target="_blank"></a>
-        </li>
-      </ul>
-    </nav>
-  `
+  templateUrl: './nav.component.html'
 })
 export class NavComponent implements AfterViewInit {
 
